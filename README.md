@@ -9,22 +9,6 @@ This project, **From Language to Melody**, explores the connection between natur
 - **MIDI Generation**: Produces MIDI music files with a single instrument based on mood and tone extracted from the text.
 - **LSTM-Based Music Generation**: Trains neural networks using labeled MIDI data to generate compositions based on input mood values.
 
-## Project Structure
-```
-From-Language-to-Melody/
-│
-├── README.md                  # Project Overview
-├── lstm.py                    # LSTM model for training music generation
-├── predict.py                 # Script for generating music from trained models
-├── data/                      # Contains MIDI datasets (place your datasets here)
-│   └── raw/                   # Raw MIDI files (categorized by mood)
-├── midi_songs/                # Generated MIDI files from the model
-├── weights.hdf5               # Pre-trained model weights
-├── new_weights.hdf5           # Updated model weights after further training
-└── docs/
-    └── report.pdf             # Detailed project report explaining the methodology and results
-```
-
 ## Requirements
 - **Python 3.x**
 - **Dependencies**: Install the following packages using pip:
