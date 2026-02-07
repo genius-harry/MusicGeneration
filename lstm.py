@@ -3,7 +3,7 @@ import pickle
 import numpy
 import os
 import json
-import openai
+from openai import OpenAI
 from music21 import converter, instrument, note, chord
 from keras.models import Sequential
 from keras.layers import Dense
@@ -41,15 +41,15 @@ mood_categories = {
 
 
 def get_mood_from_text(text):
-    openai.api_key = "" #your opeanai api here
-    response = openai.ChatCompletion.create(
+    client = OpenAI(api_key="")  # your openai api key here
+    response = client.chat.completions.create(
         model="gpt-4",
         messages=[
-             {"role": "system", "content": 'You are a helpful assistant that converts text to mood values. An example response would be: {"happy": 0.75, "sad": 0, "angry": 0, "nostalgic": 0, "mysterious": 0, "romantic": 0.25}'},
+            {"role": "system", "content": 'You are a helpful assistant that converts text to mood values. An example response would be: {"happy": 0.75, "sad": 0, "angry": 0, "nostalgic": 0, "mysterious": 0, "romantic": 0.25}'},
             {"role": "user", "content": f"Convert the following text to mood values in JSON format: {text}. The mood values should be for 'happy', 'sad', 'angry', 'nostalgic', 'mysterious', and 'romantic'. The values should add up to 1."}
         ]
     )
-    mood_text = response['choices'][0]['message']['content']
+    mood_text = response.choices[0].message.content
     print("Mood Text:", mood_text)
     mood_input = json.loads(mood_text)
     return mood_input
